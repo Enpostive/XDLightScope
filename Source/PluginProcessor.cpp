@@ -25,9 +25,10 @@ XDLightScopeAudioProcessor::XDLightScopeAudioProcessor()
 lowLPCoeff(dspParam),
 highLPCoeff(dspParam)
 {
+ static constexpr int smplLength = 5*44100;
+
  lowLPCoeff.setLowPassFilter(LowXOver, 0.707);
  highLPCoeff.setLowPassFilter(HighXOver, 0.707);
- static constexpr int smplLength = 5*44100;
  leftAudioData.setMaximumLength(smplLength);
  rightAudioData.setMaximumLength(smplLength);
  bassAudioData.setMaximumLength(smplLength);
@@ -163,8 +164,6 @@ void XDLightScopeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
   procBuffer[i] = sum;
  }
  
- std::chrono::duration<double> wait;
-
  {
   std::lock_guard<std::mutex> lock(buffMutex);
 
