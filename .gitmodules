@@ -1,0 +1,3 @@
+[submodule "Source/XDDSP"]
+	path = Source/XDDSP
+	url = https://github.com/Enpostive/XDDSP.git
